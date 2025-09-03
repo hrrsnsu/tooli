@@ -1,4 +1,7 @@
+'use client';
+import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 import React from 'react';
 
 interface SideMenuProps {
@@ -6,6 +9,11 @@ interface SideMenuProps {
 }
 
 function SideMenu({ pageContent }: SideMenuProps) {
+    const session = useSession();
+    if (session.status === 'unauthenticated') {
+        redirect('/signin');
+    }
+
     return (
         <div className='drawer'>
             <div className='drawer-open h-screen'>
@@ -43,6 +51,14 @@ function SideMenu({ pageContent }: SideMenuProps) {
                         <div className='divider m-0' />
                         <li>
                             <a className='menu-item'>Settings</a>
+                        </li>
+                        <li>
+                            <a
+                                className='menu-item'
+                                onClick={async () => await signOut()}
+                            >
+                                Sign Out
+                            </a>
                         </li>
                     </div>
                 </ul>
