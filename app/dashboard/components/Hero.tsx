@@ -6,7 +6,7 @@ function Hero() {
             <div className='hero-content items-start w-[100%] p-0'>
                 <div>
                     <h1 className='text-4xl font-bold'>Explore Tooli</h1>
-                    <p className='py-6'>
+                    <p className='pt-6'>
                         Discover, utilize, and explore community created MCP
                         tools
                     </p>

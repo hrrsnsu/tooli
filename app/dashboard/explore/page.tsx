@@ -5,7 +5,7 @@ import ToolGallery from '../components/ToolGallery';
 export default function Page() {
     return (
         <div className='dashboard-content'>
-            <div className='flex flex-col gap-16'>
+            <div className='flex flex-col gap-12'>
                 <Hero />
                 <Search />
                 <ToolGallery />

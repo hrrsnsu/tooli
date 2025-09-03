@@ -4,7 +4,7 @@
 }
 
 .dashboard-content {
-    @apply py-8 px-32 border-1 border-base-300 border-solid rounded-xl bg-gradient-to-t from-base-100 to-base-200;
+    @apply py-12 px-32 border-1 border-base-300 border-solid rounded-xl bg-gradient-to-t from-base-100 to-base-200;
 }
 
 .menu-item {
