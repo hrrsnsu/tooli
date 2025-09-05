@@ -1,7 +1,7 @@
 'use client';
-import { signOut, useSession } from 'next-auth/react';
+import { useUserContext } from '@/context/UserContext';
+import { signOut } from 'next-auth/react';
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
 import React from 'react';
 
 interface SideMenuProps {
@@ -9,10 +9,7 @@ interface SideMenuProps {
 }
 
 function SideMenu({ pageContent }: SideMenuProps) {
-    const session = useSession();
-    if (session.status === 'unauthenticated') {
-        redirect('/signin');
-    }
+    const user = useUserContext();
 
     return (
         <div className='drawer'>
@@ -25,7 +22,10 @@ function SideMenu({ pageContent }: SideMenuProps) {
                         >
                             <div className='avatar'>
                                 <div className='w-12 rounded-full'>
-                                    <img src='https://img.daisyui.com/images/profile/demo/yellingwoman@192.webp' />
+                                    <img
+                                        alt='User Profile Picture'
+                                        src={user?.image}
+                                    />
                                 </div>
                             </div>
                             <p className='text-2xl'>Harrison Su</p>
