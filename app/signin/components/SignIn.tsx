@@ -1,13 +1,24 @@
 import React from 'react';
 import RandomLogo from './RandomLogo';
-import { signIn } from '@/lib/auth';
+import { auth, signIn } from '@/lib/auth';
+import { redirect } from 'next/navigation';
 
 const signInGoogle = async () => {
     'use server';
     await signIn('google', { redirectTo: '/dashboard/explore' });
 };
 
-function SignIn() {
+const getSession = async () => {
+    const session = await auth();
+    return session;
+};
+
+async function SignIn() {
+    const session = await getSession();
+    if (session) {
+        redirect('/dashboard');
+    }
+
     return (
         <div className='flex flex-col items-center justify-evenly w-[450px] h-[500px] py-4 px-16 rounded-2xl bg-black/30 backdrop-blur-md border border-white/30 shadow-lg'>
             <RandomLogo />
