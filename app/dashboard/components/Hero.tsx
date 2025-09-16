@@ -1,6 +1,15 @@
-import React from 'react';
+'use client';
+import React, { useRef } from 'react';
+import ToolModal from './ToolModal';
 
 function Hero() {
+    const modalRef = useRef<HTMLDialogElement>(null);
+    const openModal = () => {
+        if (modalRef && modalRef.current) {
+            modalRef.current.showModal();
+        }
+    };
+
     return (
         <section className='hero'>
             <div className='hero-content items-start w-[100%] p-0'>
@@ -11,9 +20,13 @@ function Hero() {
                         tools
                     </p>
                 </div>
-                <button className='btn btn-primary rounded-4xl ml-auto'>
+                <button
+                    className='btn btn-primary rounded-4xl ml-auto'
+                    onClick={openModal}
+                >
                     Create a tool
                 </button>
+                <ToolModal ref={modalRef} />
             </div>
         </section>
     );
